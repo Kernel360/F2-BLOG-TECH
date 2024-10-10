@@ -14,15 +14,22 @@ public class FolderMapper {
 
 	public Folder toFolderEntity(User user, FolderType folderType, FolderCreateRequest request) {
 		switch (folderType) {
-			case ROOT -> Folder.rootFolder(request.name(), user);
-			case RECYCLE_BIN -> Folder.recycleBinFolder(request.name(), user);
-            case UNCLASSIFIED -> Folder.unclassifedFolder(request.name(), user);
+			case ROOT -> {
+				return Folder.rootFolder(request.name(), user);
+			}
+			case RECYCLE_BIN -> {
+				return Folder.recycleBinFolder(request.name(), user);
+			}
+			case UNCLASSIFIED -> {
+				return Folder.unclassifedFolder(request.name(), user);
+			}
 
-			case GENERAL -> Folder.generalFolder(request.name(), user);
+			case GENERAL -> {
+				return Folder.generalFolder(request.name(), user);
+			}
 
 			default -> throw ApiFolderException.INVALID_FOLDER_TYPE();
-        }
-		return Folder.generalFolder(request.name(), user);
+		}
 	}
 
 	public FolderResponse toFolderResponse(Folder folder) {

@@ -38,6 +38,10 @@ public class FolderProvider {
 		return folderRepository.findUnclassifiedByUserId(user.getId());
 	}
 
+	public Folder findUnclassifiedByUser(User user) {
+		return folderRepository.findByUserAndFolderType(user, FolderType.UNCLASSIFIED);
+	}
+
 	public Folder findRecycleBin(User user) {
 		return folderRepository.findRecycleBinByUserId(user.getId());
 	}

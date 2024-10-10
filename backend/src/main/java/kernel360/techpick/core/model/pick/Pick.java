@@ -81,4 +81,9 @@ public class Pick extends TimeTracking {
 	public void updateParentFolder(Folder parentFolder) {
 		this.parentFolder = parentFolder;
 	}
+
+	public void updatePick(String title, String memo) {
+		this.customTitle = title;
+		this.memo = memo;
+	}
 }

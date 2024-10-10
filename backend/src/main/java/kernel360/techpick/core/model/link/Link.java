@@ -65,6 +65,12 @@ public class Link {
 		return new Link(url, title, description, imageUrl);
 	}
 
+	public void updateLink(String title, String description, String imageUrl) {
+		this.title = title;
+		this.description = description;
+		this.imageUrl = imageUrl;
+	}
+
 	private Link(String url, String title, String description, String imageUrl) {
 		this.url = url;
 		this.title = title;

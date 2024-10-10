@@ -23,4 +23,8 @@ public enum FolderType {
 	public static EnumSet<FolderType> getBasicFolderTypes() {
 		return EnumSet.of(UNCLASSIFIED, RECYCLE_BIN, ROOT);
 	}
+
+	public static EnumSet<FolderType> getUnclassifiedFolderTypes() {
+		return EnumSet.of(GENERAL, RECYCLE_BIN, ROOT);
+	}
 }

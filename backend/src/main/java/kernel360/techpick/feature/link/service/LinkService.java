@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kernel360.techpick.feature.link.exception.ApiLinkException;
 import kernel360.techpick.core.model.link.Link;
+import kernel360.techpick.feature.link.service.dto.LinkRequest;
 import kernel360.techpick.feature.link.service.dto.LinkResponse;
 import kernel360.techpick.feature.link.model.LinkMapper;
 import kernel360.techpick.feature.link.model.LinkProvider;
@@ -20,6 +21,19 @@ public class LinkService {
 	private final LinkProvider linkProvider;
 	private final LinkMapper linkMapper;
 	private final PickRepository pickRepository;
+
+	@Transactional
+	public Link saveOrUpdateLink(LinkRequest linkRequest) {
+		Link link = linkProvider.findByUrlOrElseGet(linkRequest.url())
+			.map(existLink -> {
+				existLink.updateLink(linkRequest.title(), linkRequest.description(),
+					linkRequest.imageUrl());
+				return existLink;
+			})
+			.orElseGet(() -> linkMapper.toLinkEntity(linkRequest));
+
+		return linkProvider.save(link);
+	}
 
 	@Transactional(readOnly = true)
 	public LinkResponse getLinkById(Long id) throws ApiLinkException {

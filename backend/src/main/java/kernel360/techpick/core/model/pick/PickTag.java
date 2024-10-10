@@ -41,4 +41,8 @@ public class PickTag {
 		this.pick = pick;
 		this.tag = tag;
 	}
+
+	public static PickTag create(Pick pick, Tag tag) {
+		return new PickTag(pick, tag);
+	}
 }

@@ -1,6 +1,7 @@
 package kernel360.techpick.feature.link.model;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,10 @@ public class LinkProvider {
 
 	public Link findByUrl(String url) throws ApiLinkException {
 		return linkRepository.findByUrl(url).orElseThrow(ApiLinkException::LINK_NOT_FOUND);
+	}
+
+	public Optional<Link> findByUrlOrElseGet(String url) {
+		return linkRepository.findByUrl(url);
 	}
 
 	public List<Link> findAll() {
